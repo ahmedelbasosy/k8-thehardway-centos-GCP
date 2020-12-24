@@ -49,3 +49,4 @@ gcloud -q compute instances delete \
 ################################
 
 find . -type d -exec rm -rf {} +
+rm encryption-config.yaml
