@@ -1,10 +1,15 @@
 #!/bin/bash
 
+echo "##### Bootstrapping the etcd Cluster #####"
+
 for instance in controller-{0..1}; do
   gcloud compute scp \
   Bootstrapping_etcd_script_CentOs.sh ${instance}:~/Bootstrapping_etcd_script_CentOs.sh
   gcloud compute ssh ${instance} --command=~/Bootstrapping_etcd_script_CentOs.sh
 done
+
+clear
+echo "##### Verifying ETCD Cluster Status #####"
 
 for instance in controller-{0..1}; do
 echo ${instance} Status:

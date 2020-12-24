@@ -22,3 +22,5 @@ sleep 45
 ./19-admin_kubernetes_configuration_file.sh
 ./20-disribute_Configuration_files.sh
 ./21-data_encryption_keys.sh
+./22-Bootstrapping_etcd_cluster.sh
+#./23-Bootstrapping_kubernetes_control_plane.sh
