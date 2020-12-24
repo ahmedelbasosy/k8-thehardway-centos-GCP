@@ -7,6 +7,9 @@ for instance in worker-{0..1}; do
    kubeconfig/kube_proxy_kubeconfig/kube-proxy.kubeconfig ${instance}:~/
 done
 
+echo "##### Distribute Controllers kubeconfig Files #####"
+
+
 for instance in controller-{0..1}; do
   gcloud compute scp \
   kubeconfig/kube-admin_kubeconfig/admin.kubeconfig \

@@ -6,14 +6,14 @@ cd kubeconfig/kube-admin_kubeconfig
 
 {
   kubectl config set-cluster kubernetes-the-hard-way \
-    --certificate-authority=../../certificate/cert_authority/ca.pem \
+    --certificate-authority=../../certifications/cert_authority/ca.pem \
     --embed-certs=true \
     --server=https://127.0.0.1:6443 \
-    --kubeconfig=kube-controller-manager.kubeconfig
+    --kubeconfig=admin.kubeconfig
 
   kubectl config set-credentials admin \
-    --client-certificate=../../certificate/admin_cert/admin.pem \
-    --client-key=../../certificate/admin_cert/admin-key.pem \
+    --client-certificate=../../certifications/admin/admin.pem \
+    --client-key=../../certifications/admin/admin-key.pem \
     --embed-certs=true \
     --kubeconfig=admin.kubeconfig
 
