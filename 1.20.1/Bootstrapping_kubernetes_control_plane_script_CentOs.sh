@@ -58,11 +58,10 @@ ExecStart=/usr/local/bin/kube-apiserver \\
   --kubelet-client-certificate=/var/lib/kubernetes/kubernetes.pem \\
   --kubelet-client-key=/var/lib/kubernetes/kubernetes-key.pem \\
   --kubelet-https=true \\
-  --runtime-config='api/all=true' \\
+  --runtime-config=api/all=true \\
   --service-account-key-file=/var/lib/kubernetes/service-account.pem \\
   --service-account-signing-key-file=/var/lib/kubernetes/service-account-key.pem \\
   --service-account-issuer=api \\
-  --service-account-api-audiences=api \\
   --service-cluster-ip-range=10.32.0.0/24 \\
   --service-node-port-range=30000-32767 \\
   --tls-cert-file=/var/lib/kubernetes/kubernetes.pem \\
@@ -156,3 +155,36 @@ sudo systemctl status kube-apiserver
 
 #####################################################
 
+sudo setenforce 0
+sudo yum install -y nginx
+sudo mkdir /etc/nginx/sites-available
+
+cat > kubernetes.default.svc.cluster.local <<EOF
+server {
+  listen      80;
+  server_name kubernetes.default.svc.cluster.local;
+
+  location /healthz {
+     proxy_pass                    https://127.0.0.1:6443/healthz;
+     proxy_ssl_trusted_certificate /var/lib/kubernetes/ca.pem;
+  }
+}
+EOF
+
+{
+  sudo mv kubernetes.default.svc.cluster.local \
+    /etc/nginx/sites-available/kubernetes.default.svc.cluster.local
+
+  sudo ln -s /etc/nginx/sites-available/kubernetes.default.svc.cluster.local /etc/nginx/conf.d/kubernetes.default.svc.cluster.local.conf
+}
+
+##########################################################
+
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+
+#########################################################
+
+kubectl get componentstatuses --kubeconfig admin.kubeconfig
+
+curl -H "Host: kubernetes.default.svc.cluster.local" -i http://127.0.0.1/healthz
