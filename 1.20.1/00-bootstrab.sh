@@ -24,3 +24,6 @@ sleep 45
 ./21-data_encryption_keys.sh
 ./22-Bootstrapping_etcd_cluster.sh
 ./23-Bootstrapping_kubernetes_control_plane.sh
+./24-rbac_for_Kubelet_Authorization.sh
+./25-provision_network_loadbalancer.sh
+./26-verification.sh
