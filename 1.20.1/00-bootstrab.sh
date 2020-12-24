@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 ./01-gcloud_network.sh
 ./02-controllers.sh
 ./03-workers.sh
@@ -10,10 +11,10 @@ sleep 45
 ./08-workers_client_cert.sh
 ./09-controller_manager_client_cert.sh
 ./10-kube_proxy_client_cert.sh
-#./11-kube_scheduler_client_cert.sh
-#./12-kube_api_server_cert.sh
-#./13-service_account_key_pair.sh
-#./14-distribute_cert.sh
+./11-kube_scheduler_client_cert.sh
+./12-kube_api_server_cert.sh
+./13-service_account_key_pair.sh
+./14-distribute_cert.sh
 #./15-kubelet_kubernetes_configuration_file.sh
 #./16-kube-proxy_kubernetes_configuration_file.sh
 #./17-kube-controller-manager_kubernetes_configuration_file.sh
