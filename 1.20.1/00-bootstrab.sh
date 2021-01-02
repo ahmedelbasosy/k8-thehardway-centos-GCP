@@ -27,3 +27,7 @@ sleep 45
 ./24-rbac_for_Kubelet_Authorization.sh
 ./25-provision_network_loadbalancer.sh
 ./26-verification.sh
+./27-Bootstrapping_kubernetes_worker_nodes.sh
+./28-verification.sh
+./29-configure-remote-access.sh
+./30-Provisioning_PodNetwork_Routes.sh

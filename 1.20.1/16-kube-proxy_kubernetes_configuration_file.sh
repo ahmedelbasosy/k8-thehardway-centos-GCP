@@ -1,5 +1,9 @@
 #!/bin/bash
 
+KUBERNETES_PUBLIC_ADDRESS=$(gcloud compute addresses describe kubernetes-the-hard-way \
+  --region $(gcloud config get-value compute/region) \
+  --format 'value(address)')
+
 echo "##### Generating The kube-proxy Kubernetes Configuration File #####"
 mkdir -p kubeconfig/kube_proxy_kubeconfig
 cd kubeconfig/kube_proxy_kubeconfig
